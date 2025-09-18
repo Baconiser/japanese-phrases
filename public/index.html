@@ -9,6 +9,8 @@
     <link rel="apple-touch-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/160px-Flag_of_Japan.svg.png">
 
     <title>Essential Japanese Phrases for Your Trip</title>
+    <script>(function(){try{var s=localStorage.getItem('theme');var d=s?s==='dark':window.matchMedia&&(window.matchMedia('(prefers-color-scheme: dark)').matches);if(d){document.documentElement.classList.add('dark');}}catch(e){}})();</script>
+    <script src="/js/theme.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -43,12 +45,22 @@
             opacity: 1;
             transform: translateX(-50%) translateY(-10px);
         }
+        /* Dark mode overrides */
+        :root { color-scheme: light dark; }
+        .dark .phrase-card { background-color: #1f2937; }
+        .dark header { background-color: #111827; }
+        .dark .text-gray-900 { color: #f3f4f6; }
+        .dark .text-gray-600 { color: #9ca3af; }
+        .dark footer p.text-gray-500 { color: #9ca3af; }
+        .dark .copy-button { background-color: rgba(255,255,255,0.06) !important; color: #e5e7eb !important; }
+        .dark .copy-button:hover { background-color: rgba(255,255,255,0.12) !important; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
 
-    <header class="bg-white shadow-sm">
-        <div class="max-w-4xl mx-auto py-8 px-4 text-center">
+    <header class="bg-white dark:bg-gray-800 shadow-sm">
+        <div class="max-w-4xl mx-auto py-8 px-4 text-center relative">
+            <button type="button" aria-label="Toggle dark mode" data-theme-switch class="absolute right-4 top-4 px-3 py-1.5 rounded-full ring-1 ring-gray-300 dark:ring-gray-600 text-sm">☀️ Light</button>
             <h1 class="text-4xl md:text-5xl font-bold text-gray-900">Essential Japanese Phrases</h1>
             <p class="mt-2 text-lg text-gray-600">Your handy guide for a smooth trip to Japan!</p>
         </div>

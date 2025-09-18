@@ -4,9 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Offline</title>
-    <style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;margin:2rem;color:#0f172a;line-height:1.5}h1{font-size:1.5rem;margin:0 0 0.5rem}</style>
+    <script>(function(){try{var s=localStorage.getItem('theme');var d=s?s==='dark':window.matchMedia&&(window.matchMedia('(prefers-color-scheme: dark)').matches);if(d){document.documentElement.classList.add('dark');}}catch(e){}})();</script>
+    <script src="/js/theme.js" defer></script>
+    <style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;margin:2rem;color:#0f172a;line-height:1.5}h1{font-size:1.5rem;margin:0 0 0.5rem}
+    :root{color-scheme: light dark}
+    .dark body{background:#0b1220;color:#e5e7eb}
+    .theme-toggle{position:fixed;top:12px;right:12px;padding:.35rem .6rem;border:1px solid #cbd5e1;border-radius:9999px;background:transparent;font-size:.9rem}
+    .dark .theme-toggle{border-color:#334155;color:#e5e7eb}
+    </style>
   </head>
   <body>
+    <button type="button" aria-label="Toggle dark mode" data-theme-switch class="theme-toggle">☀️ Light</button>
     <h1>You’re offline</h1>
     <p>Previously opened content is available. Reconnect to update.</p>
   </body>
