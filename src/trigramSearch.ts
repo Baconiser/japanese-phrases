@@ -116,3 +116,15 @@ function intersectionSize<T>(a: Set<T>, b: Set<T>): number {
     return n;
 }
 
+// Convenience wrapper for quick one-off fuzzy searches without manually creating an index
+export function fuzzySearch<T>(
+    query: string,
+    items: T[],
+    getText: (item: T) => string,
+    opts: SearchOptions = {}
+): SearchResult<T>[] {
+    const index = new TrigramSearchIndex<T>();
+    index.addAll(getText, items);
+    return index.search(query, opts);
+}
+
