@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Search</title>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon-180.png" sizes="180x180">
+    <style>
+      body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;margin:1rem;line-height:1.5;color:#0f172a}
+      input{width:100%;font:inherit;padding:.6rem .8rem;border:1px solid #cbd5e1;border-radius:.5rem}
+      .hint{color:#64748b;font-size:.9rem;margin:.5rem 0 1rem}
+      ul{list-style:none;padding:0;margin:1rem 0}
+      li{padding:.5rem 0;border-bottom:1px solid #e2e8f0}
+      .score{color:#64748b;font-size:.85rem}
+    </style>
+  </head>
+  <body>
+    <h1>Offline Search</h1>
+    <p class="hint">This page works offline. Add to Home Screen on iOS for best results.</p>
+    <input id="q" placeholder="Search…" autocomplete="off">
+    <ul id="results"></ul>
+
+    <script type="module">
+      class TrigramSearchIndex {
+        constructor(){this.docs=[];this.gramToDocIds=new Map}
+        add(text,item){const t=normalizeText(text),g=buildTrigramSet(t),id=this.docs.length;this.docs.push({item,text:t,trigrams:g});for(const x of g){let b=this.gramToDocIds.get(x);b||(b=new Set,this.gramToDocIds.set(x,b));b.add(id)}return id}
+        addAll(getText,items){for(const it of items)this.add(getText(it),it)}
+        search(query,opts={}){const limit=opts.limit??10,minScore=opts.minScore??.15,q=normalizeText(query);if(!q)return[];const qg=buildTrigramSet(q),cand=new Set;for(const g of qg){const b=this.gramToDocIds.get(g);if(b)for(const id of b)cand.add(id)}if(cand.size===0&&qg.size===0)for(let i=0;i<this.docs.length;i++)cand.add(i);const out=[];for(const id of cand){const d=this.docs[id];let s=0;if(qg.size===0){if(d.text.includes(q))s=1;else continue}else{const is=intersectionSize(qg,d.trigrams);if(is===0){if(d.text.includes(q))s=.2;else continue}else{const us=qg.size+d.trigrams.size-is;s=us?is/us:0}}if(s>=minScore)out.push({score:s,item:d.item})}return out.sort((a,b)=>b.score-a.score).slice(0,limit)}}
+      function normalizeText(i){return i.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^\p{L}\p{N}\s]/gu,' ').replace(/\s+/g,' ').trim()}
+      function buildTrigramSet(t){const s=new Set;if(!t)return s;for(const tok of t.split(' ')){if(!tok)continue;const p='  '+tok+'  ';for(let i=0;i<=p.length-3;i++)s.add(p.slice(i,i+3))}return s}
+      function intersectionSize(a,b){let n=0;for(const v of a)if(b.has(v))n++;return n}
+
+      // Example dataset (can be swapped for your own JSON)
+      const data=[
+        {id:'1',title:'Offline PWA Guide',body:'Service workers, caching strategies, and iOS quirks.'},
+        {id:'2',title:'Trigram Search',body:'Efficient fuzzy matching using character n-grams.'},
+        {id:'3',title:'Vercel Deploy',body:'Headers for sw.js and manifest for fast updates.'}
+      ];
+
+      const index=new TrigramSearchIndex();
+      index.addAll(d=>`${d.title} ${d.body}`,data);
+
+      const q=document.getElementById('q');
+      const results=document.getElementById('results');
+      q.addEventListener('input',()=>{
+        const list=index.search(q.value,{limit:20,minScore:.12});
+        results.innerHTML=list.map(r=>`<li><div>${escapeHtml(r.item.title||r.item)}</div><div class="score">${r.score.toFixed(3)}</div></li>`).join('');
+      });
+
+      function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
+
+      if('serviceWorker' in navigator){
+        window.addEventListener('load',()=>{
+          navigator.serviceWorker.register('/sw.js',{scope:'/'}).catch(()=>{});
+        });
+      }
+    </script>
+  </body>
+</html>
