@@ -294,7 +294,7 @@
     <footer class="text-center py-8">
         <p class="text-gray-500">Have a wonderful trip! 良い旅を (Yoi tabi o)!</p>
     </footer>
-
+    
     <script>
         function copyToClipboard(text) {
             if (navigator.clipboard) {
@@ -311,7 +311,7 @@
                 showFeedback();
             }
         }
-
+        
         function showFeedback() {
             const feedbackElement = document.getElementById('copied-feedback');
             feedbackElement.classList.add('show');
@@ -378,7 +378,7 @@
             // Create a virtual file from the script text
             const blob = new Blob([serviceWorkerScript], { type: 'application/javascript' });
             const swUrl = URL.createObjectURL(blob);
-
+            
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register(swUrl)
                     .then(registration => {
@@ -392,3 +392,4 @@
     </script>
 </body>
 </html>
+
