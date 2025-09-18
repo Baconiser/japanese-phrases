@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Search</title>
+    <script>(function(){try{var s=localStorage.getItem('theme');var d=s?s==='dark':window.matchMedia&&(window.matchMedia('(prefers-color-scheme: dark)').matches);if(d){document.documentElement.classList.add('dark');}}catch(e){}})();</script>
+    <script src="/js/theme.js" defer></script>
     <link rel="manifest" href="/manifest.webmanifest">
     <meta name="theme-color" content="#0f172a">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,9 +18,18 @@
       ul{list-style:none;padding:0;margin:1rem 0}
       li{padding:.5rem 0;border-bottom:1px solid #e2e8f0}
       .score{color:#64748b;font-size:.85rem}
+      /* Dark mode */
+      :root{color-scheme: light dark}
+      .dark body{background:#0b1220;color:#e5e7eb}
+      .dark .hint,.dark .score{color:#94a3b8}
+      .dark input{background:#0f172a;color:#e5e7eb;border-color:#334155}
+      .dark li{border-bottom-color:#334155}
+      .theme-toggle{position:fixed;top:12px;right:12px;padding:.35rem .6rem;border:1px solid #cbd5e1;border-radius:9999px;background:transparent;font-size:.9rem}
+      .dark .theme-toggle{border-color:#334155;color:#e5e7eb}
     </style>
   </head>
   <body>
+    <button type="button" aria-label="Toggle dark mode" data-theme-switch class="theme-toggle">☀️ Light</button>
     <h1>Offline Search</h1>
     <p class="hint">This page works offline. Add to Home Screen on iOS for best results.</p>
     <input id="q" placeholder="Search…" autocomplete="off">
