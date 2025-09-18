@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="JP Phrases">
+    <link rel="apple-touch-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/160px-Flag_of_Japan.svg.png">
+
     <title>Essential Japanese Phrases for Your Trip</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -42,7 +47,6 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Header Section -->
     <header class="bg-white shadow-sm">
         <div class="max-w-4xl mx-auto py-8 px-4 text-center">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-900">Essential Japanese Phrases</h1>
@@ -50,89 +54,73 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="max-w-4xl mx-auto p-4 md:p-8">
 
-        <!-- Phrases Section -->
         <div id="phrases-container" class="space-y-8">
             
-            <!-- Category: Greetings & Basics -->
             <div>
                 <h2 class="text-2xl font-bold border-b-2 border-red-400 pb-2 mb-6">Greetings & Basics</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Ohayou gozaimasu</p>
                         <p class="text-gray-600">Good morning</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-semibold hover:bg-red-200" onclick="copyToClipboard('Ohayou gozaimasu')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Konnichiwa</p>
                         <p class="text-gray-600">Hello / Good afternoon</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-semibold hover:bg-red-200" onclick="copyToClipboard('Konnichiwa')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Konbanwa</p>
                         <p class="text-gray-600">Good evening</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-semibold hover:bg-red-200" onclick="copyToClipboard('Konbanwa')">Copy</button>
                     </div>
-                     <!-- Phrase Card -->
-                    <div class="phrase-card bg-white p-5 rounded-lg shadow">
+                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Sumimasen</p>
                         <p class="text-gray-600">Excuse me / Sorry</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-semibold hover:bg-red-200" onclick="copyToClipboard('Sumimasen')">Copy</button>
                     </div>
-                     <!-- Phrase Card -->
-                    <div class="phrase-card bg-white p-5 rounded-lg shadow">
+                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Arigatou gozaimasu</p>
                         <p class="text-gray-600">Thank you (formal)</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-semibold hover:bg-red-200" onclick="copyToClipboard('Arigatou gozaimasu')">Copy</button>
                     </div>
-                     <!-- Phrase Card -->
-                    <div class="phrase-card bg-white p-5 rounded-lg shadow">
+                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Wakarimasen</p>
                         <p class="text-gray-600">I don't understand</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-semibold hover:bg-red-200" onclick="copyToClipboard('Wakarimasen')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Hai / Iie</p>
                         <p class="text-gray-600">Yes / No</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-semibold hover:bg-red-200" onclick="copyToClipboard('Hai / Iie')">Copy</button>
                     </div>
-                     <!-- Phrase Card -->
-                    <div class="phrase-card bg-white p-5 rounded-lg shadow">
+                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Onegaishimasu</p>
                         <p class="text-gray-600">Please</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-semibold hover:bg-red-200" onclick="copyToClipboard('Onegaishimasu')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Watashi wa Eigo ka Doitsugo o hanashimasu</p>
                         <p class="text-gray-600">I speak English or German</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-semibold hover:bg-red-200" onclick="copyToClipboard('Watashi wa Eigo ka Doitsugo o hanashimasu')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Kore o onegaishimasu</p>
                         <p class="text-gray-600">I would like this, please</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-semibold hover:bg-red-200" onclick="copyToClipboard('Kore o onegaishimasu')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Daijoubu desu</p>
                         <p class="text-gray-600">It's okay / I'm fine / No, thank you</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-semibold hover:bg-red-200" onclick="copyToClipboard('Daijoubu desu')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Chotto matte kudasai</p>
                         <p class="text-gray-600">Please wait a moment</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-semibold hover:bg-red-200" onclick="copyToClipboard('Chotto matte kudasai')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">[Item] wa arimasu ka?</p>
                         <p class="text-gray-600">Do you have [Item]?</p>
@@ -141,29 +129,24 @@
                 </div>
             </div>
 
-            <!-- Category: At the Train Station -->
             <div>
                 <h2 class="text-2xl font-bold border-b-2 border-yellow-400 pb-2 mb-6">At the Train Station</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">[Destination] yuki no densha wa dore desu ka?</p>
                         <p class="text-gray-600">Which train goes to [Destination]?</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm font-semibold hover:bg-yellow-200" onclick="copyToClipboard('[Destination] yuki no densha wa dore desu ka?')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Kono densha wa [Destination] ni ikimasu ka?</p>
                         <p class="text-gray-600">Does this train go to [Destination]?</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm font-semibold hover:bg-yellow-200" onclick="copyToClipboard('Kono densha wa [Destination] ni ikimasu ka?')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Tsugi no densha wa nanji desu ka?</p>
                         <p class="text-gray-600">What time is the next train?</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm font-semibold hover:bg-yellow-200" onclick="copyToClipboard('Tsugi no densha wa nanji desu ka?')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Ichiban chikai eki wa doko desu ka?</p>
                         <p class="text-gray-600">Where is the nearest station?</p>
@@ -172,66 +155,55 @@
                 </div>
             </div>
 
-            <!-- Category: Ordering Food & Drinks -->
             <div>
                 <h2 class="text-2xl font-bold border-b-2 border-blue-400 pb-2 mb-6">Ordering Food & Drinks</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Kore o kudasai</p>
                         <p class="text-gray-600">This one, please</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold hover:bg-blue-200" onclick="copyToClipboard('Kore o kudasai')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Osusume wa nan desu ka?</p>
                         <p class="text-gray-600">What do you recommend?</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold hover:bg-blue-200" onclick="copyToClipboard('Osusume wa nan desu ka?')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Okaikei o onegaishimasu</p>
                         <p class="text-gray-600">Check, please</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold hover:bg-blue-200" onclick="copyToClipboard('Okaikei o onegaishimasu')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Itadakimasu</p>
                         <p class="text-gray-600">Thank you for the meal (before eating)</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold hover:bg-blue-200" onclick="copyToClipboard('Itadakimasu')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Gochisousama deshita</p>
                         <p class="text-gray-600">Thank you for the meal (after eating)</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold hover:bg-blue-200" onclick="copyToClipboard('Gochisousama deshita')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Oishii</p>
                         <p class="text-gray-600">Delicious</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold hover:bg-blue-200" onclick="copyToClipboard('Oishii')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Arerugii ga arimasu</p>
                         <p class="text-gray-600">I have an allergy</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold hover:bg-blue-200" onclick="copyToClipboard('Arerugii ga arimasu')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Koukakurui arerugii ga arimasu</p>
                         <p class="text-gray-600">I am allergic to shellfish</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold hover:bg-blue-200" onclick="copyToClipboard('Koukakurui arerugii ga arimasu')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Mizu o onegaishimasu</p>
                         <p class="text-gray-600">Water, please</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold hover:bg-blue-200" onclick="copyToClipboard('Mizu o onegaishimasu')">Copy</button>
                     </div>
-                     <!-- Phrase Card -->
-                    <div class="phrase-card bg-white p-5 rounded-lg shadow">
+                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Onaka ippai</p>
                         <p class="text-gray-600">I'm full</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold hover:bg-blue-200" onclick="copyToClipboard('Onaka ippai')">Copy</button>
@@ -239,29 +211,24 @@
                 </div>
             </div>
             
-            <!-- Category: Asking for Help & Directions -->
             <div>
                 <h2 class="text-2xl font-bold border-b-2 border-green-400 pb-2 mb-6">Asking for Help & Directions</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                     <!-- Phrase Card -->
-                    <div class="phrase-card bg-white p-5 rounded-lg shadow">
+                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Eki wa doko desu ka?</p>
                         <p class="text-gray-600">Where is the station?</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold hover:bg-green-200" onclick="copyToClipboard('Eki wa doko desu ka?')">Copy</button>
                     </div>
-                     <!-- Phrase Card -->
-                    <div class="phrase-card bg-white p-5 rounded-lg shadow">
+                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Toire wa doko desu ka?</p>
                         <p class="text-gray-600">Where is the restroom?</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold hover:bg-green-200" onclick="copyToClipboard('Toire wa doko desu ka?')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Eigo o hanasemasu ka?</p>
                         <p class="text-gray-600">Do you speak English?</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold hover:bg-green-200" onclick="copyToClipboard('Eigo o hanasemasu ka?')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Tetsudatte kuremasen ka?</p>
                         <p class="text-gray-600">Can you help me?</p>
@@ -270,23 +237,19 @@
                 </div>
             </div>
 
-            <!-- Category: Shopping -->
             <div>
                 <h2 class="text-2xl font-bold border-b-2 border-purple-400 pb-2 mb-6">Shopping</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                     <!-- Phrase Card -->
-                    <div class="phrase-card bg-white p-5 rounded-lg shadow">
+                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Ikura desu ka?</p>
                         <p class="text-gray-600">How much is it?</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold hover:bg-purple-200" onclick="copyToClipboard('Ikura desu ka?')">Copy</button>
                     </div>
-                     <!-- Phrase Card -->
-                    <div class="phrase-card bg-white p-5 rounded-lg shadow">
+                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Kurejitto kaado wa tsukaemasu ka?</p>
                         <p class="text-gray-600">Can I use a credit card?</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold hover:bg-purple-200" onclick="copyToClipboard('Kurejitto kaado wa tsukaemasu ka?')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Kore wa nan desu ka?</p>
                         <p class="text-gray-600">What is this?</p>
@@ -295,29 +258,24 @@
                 </div>
             </div>
 
-            <!-- Category: Commonly Heard Phrases -->
             <div>
                 <h2 class="text-2xl font-bold border-b-2 border-teal-400 pb-2 mb-6">Commonly Heard Phrases</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                     <!-- Phrase Card -->
-                    <div class="phrase-card bg-white p-5 rounded-lg shadow">
+                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Irasshaimase</p>
                         <p class="text-gray-600">Welcome (said by staff at shops/restaurants)</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm font-semibold hover:bg-teal-200" onclick="copyToClipboard('Irasshaimase')">Copy</button>
                     </div>
-                     <!-- Phrase Card -->
-                    <div class="phrase-card bg-white p-5 rounded-lg shadow">
+                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Shou shou omachi kudasai</p>
                         <p class="text-gray-600">Please wait a moment</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm font-semibold hover:bg-teal-200" onclick="copyToClipboard('Shou shou omachi kudasai')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Moushiwake gozaimasen</p>
                         <p class="text-gray-600">I'm very sorry / My apologies (formal)</p>
                         <button class="copy-button mt-3 px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm font-semibold hover:bg-teal-200" onclick="copyToClipboard('Moushiwake gozaimasen')">Copy</button>
                     </div>
-                    <!-- Phrase Card -->
                     <div class="phrase-card bg-white p-5 rounded-lg shadow">
                         <p class="text-lg font-semibold text-gray-900">Hai, douzo</p>
                         <p class="text-gray-600">Here you are / Go ahead</p>
@@ -329,7 +287,6 @@
         </div>
     </main>
     
-    <!-- Copied to clipboard feedback element -->
     <div id="copied-feedback" class="copied-feedback">
         Copied to clipboard!
     </div>
@@ -340,19 +297,22 @@
 
     <script>
         function copyToClipboard(text) {
-            // Create a temporary textarea element to hold the text
-            const tempTextArea = document.createElement('textarea');
-            tempTextArea.value = text;
-            document.body.appendChild(tempTextArea);
-            
-            // Select and copy the text
-            tempTextArea.select();
-            document.execCommand('copy');
-            
-            // Remove the temporary element
-            document.body.removeChild(tempTextArea);
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showFeedback();
+                });
+            } else {
+                const tempTextArea = document.createElement('textarea');
+                tempTextArea.value = text;
+                document.body.appendChild(tempTextArea);
+                tempTextArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempTextArea);
+                showFeedback();
+            }
+        }
 
-            // Show feedback
+        function showFeedback() {
             const feedbackElement = document.getElementById('copied-feedback');
             feedbackElement.classList.add('show');
             setTimeout(() => {
@@ -360,6 +320,75 @@
             }, 2000); // Hide after 2 seconds
         }
     </script>
+    
+    <script>
+        const serviceWorkerScript = `
+            const CACHE_NAME = 'japanese-phrases-cache-v1';
+            const urlsToCache = [
+                '/',
+                'https://cdn.tailwindcss.com',
+                'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap'
+            ];
+
+            self.addEventListener('install', event => {
+                event.waitUntil(
+                    caches.open(CACHE_NAME)
+                        .then(cache => {
+                            console.log('Opened cache');
+                            // Add all essential files to the cache
+                            // Note: Caching opaque responses (like cross-origin CDN requests) might fail with addAll
+                            // So we fetch them individually with no-cors mode
+                            const cachePromises = urlsToCache.map(urlToCache => {
+                                return fetch(new Request(urlToCache, { mode: 'no-cors' }))
+                                    .then(response => {
+                                        return cache.put(urlToCache, response);
+                                    }).catch(error => {
+                                        console.error('Failed to cache:', urlToCache, error);
+                                    });
+                            });
+                            
+                            // Also cache the main page itself
+                            cachePromises.push(
+                                fetch(new Request(self.location.pathname))
+                                    .then(response => cache.put(self.location.pathname, response))
+                            );
+
+                            return Promise.all(cachePromises);
+                        })
+                );
+            });
+
+            self.addEventListener('fetch', event => {
+                event.respondWith(
+                    caches.match(event.request)
+                        .then(response => {
+                            // Cache hit - return response
+                            if (response) {
+                                return response;
+                            }
+                            // Not in cache - fetch from network
+                            return fetch(event.request);
+                        }
+                    )
+                );
+            });
+        `;
+
+        if ('serviceWorker' in navigator) {
+            // Create a virtual file from the script text
+            const blob = new Blob([serviceWorkerScript], { type: 'application/javascript' });
+            const swUrl = URL.createObjectURL(blob);
+
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register(swUrl)
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
-
