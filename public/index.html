@@ -61,6 +61,7 @@
 
     <header class="bg-white dark:bg-gray-800 shadow-sm">
         <div class="max-w-4xl mx-auto py-8 px-4 text-center relative">
+            <a href="/flashcards.html" class="absolute left-4 top-4 px-3 py-1.5 rounded-full ring-1 ring-gray-300 dark:ring-gray-600 text-sm" aria-label="Kartenmodus">🎴 Karten</a>
             <button type="button" aria-label="Dunkelmodus umschalten" data-theme-switch class="absolute right-4 top-4 px-3 py-1.5 rounded-full ring-1 ring-gray-300 dark:ring-gray-600 text-sm">☀️ Hell</button>
             <h1 class="text-4xl md:text-5xl font-bold text-gray-900">Wichtige japanische Redewendungen</h1>
             <p class="mt-2 text-lg text-gray-600">Ihr praktischer Leitfaden für eine reibungslose Reise nach Japan!</p>
@@ -793,6 +794,65 @@
                 feedbackElement.classList.remove('show');
             }, 2000); // Hide after 2 seconds
         }
+    </script>
+    <script>
+        // Favoriten ("Meine Wörter") verwalten und Stern-Buttons in Karten einfügen
+        document.addEventListener('DOMContentLoaded', function(){
+            try {
+                var STORAGE_KEY = 'myWordsV1';
+                function loadMyWords(){
+                    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(_) { return []; }
+                }
+                function saveMyWords(list){
+                    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch(_) {}
+                }
+                function isFav(jp){
+                    return loadMyWords().some(function(w){ return w && w.jp === jp; });
+                }
+                function addFav(entry){
+                    var list = loadMyWords();
+                    if (!list.some(function(w){ return w.jp === entry.jp; })) {
+                        list.push({ jp: entry.jp, de: entry.de, addedAt: Date.now() });
+                        saveMyWords(list);
+                    }
+                }
+                function removeFav(jp){
+                    var list = loadMyWords().filter(function(w){ return w.jp !== jp; });
+                    saveMyWords(list);
+                }
+
+                function createFavButton(jp, de){
+                    var btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'fav-toggle absolute right-3 top-3 px-2 py-0.5 rounded-full text-sm ring-1 ring-gray-300 dark:ring-gray-600 bg-white/70 dark:bg-gray-800/70 hover:bg-white dark:hover:bg-gray-700';
+                    btn.setAttribute('aria-label', 'Zu "Meine Wörter" hinzufügen');
+                    function update(){
+                        var fav = isFav(jp);
+                        btn.textContent = fav ? '★' : '☆';
+                        btn.setAttribute('aria-pressed', fav ? 'true' : 'false');
+                        btn.title = fav ? 'Aus "Meine Wörter" entfernen' : 'Zu "Meine Wörter" hinzufügen';
+                    }
+                    btn.addEventListener('click', function(e){
+                        e.stopPropagation();
+                        if (isFav(jp)) removeFav(jp); else addFav({ jp: jp, de: de });
+                        update();
+                    });
+                    update();
+                    return btn;
+                }
+
+                Array.prototype.slice.call(document.querySelectorAll('.phrase-card')).forEach(function(card){
+                    // Stelle sicher, dass absolute Positionierung innerhalb der Karte funktioniert
+                    card.classList.add('relative');
+                    var ps = card.querySelectorAll('p');
+                    if (!ps || ps.length < 2) return;
+                    var jp = (ps[0].textContent || '').trim();
+                    var de = (ps[1].textContent || '').trim();
+                    var favBtn = createFavButton(jp, de);
+                    card.appendChild(favBtn);
+                });
+            } catch(_) {}
+        });
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function(){
