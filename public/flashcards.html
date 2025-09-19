@@ -18,14 +18,24 @@
             perspective: 1000px;
         }
         .card-inner {
+            position: relative;
             transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
             transition: transform .4s ease;
+            will-change: transform;
         }
         .card.flipped .card-inner { transform: rotateY(180deg); }
         .card-face {
             backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
-        .card-back { transform: rotateY(180deg); }
+        .card-back {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: rotateY(180deg);
+        }
         :root { color-scheme: light dark; }
         .dark .text-gray-900 { color: #f3f4f6; }
         .dark .text-gray-600 { color: #9ca3af; }
