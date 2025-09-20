@@ -7,6 +7,7 @@
 (function(){
   var WORDS_KEY = 'myWordsV1';
   var SRS_KEY = 'myWordsSRSv1';
+  var PREFS_KEY = 'flashcardsPrefsV1';
 
   function loadJSON(key, fallback){
     try { var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch(_) { return fallback; }
@@ -18,6 +19,8 @@
   function loadWords(){ return loadJSON(WORDS_KEY, []); }
   function loadSRS(){ return loadJSON(SRS_KEY, {}); }
   function saveSRS(state){ saveJSON(SRS_KEY, state); }
+  function loadPrefs(){ return loadJSON(PREFS_KEY, { direction: 'jp2de', random: false }); }
+  function savePrefs(p){ saveJSON(PREFS_KEY, p); }
 
   function now(){ return Date.now(); }
 
@@ -55,7 +58,10 @@
     srs: {},
     queue: [],
     idx: 0,
-    flipped: false
+    flipped: false,
+    direction: 'jp2de', // 'jp2de' or 'de2jp'
+    randomMode: false,
+    currentItem: null
   };
 
   function $(id){ return document.getElementById(id); }
@@ -67,23 +73,51 @@
 
   function updateProgress(){
     var progressEl = $('progress');
-    if (progressEl) progressEl.textContent = (state.idx + 1) + ' / ' + state.queue.length;
+    if (progressEl) {
+      if (state.randomMode) progressEl.textContent = '∞';
+      else progressEl.textContent = (state.idx + 1) + ' / ' + state.queue.length;
+    }
     var dueEl = $('dueCount');
-    if (dueEl) dueEl.textContent = state.queue.length - state.idx;
+    if (dueEl) dueEl.textContent = state.randomMode ? '—' : (state.queue.length - state.idx);
+  }
+
+  function updateLabels(){
+    var frontLabel = $('frontLabel');
+    var backLabel = $('backLabel');
+    if (state.direction === 'jp2de'){
+      if (frontLabel) frontLabel.textContent = 'Japanisch';
+      if (backLabel) backLabel.textContent = 'Deutsch';
+    } else {
+      if (frontLabel) frontLabel.textContent = 'Deutsch';
+      if (backLabel) backLabel.textContent = 'Japanisch';
+    }
   }
 
   function renderCard(){
     var card = $('card');
     var front = $('frontJP');
     var back = $('backDE');
-    if (!state.queue.length || state.idx >= state.queue.length){ return; }
-    var item = state.queue[state.idx];
-    front.textContent = item.jp;
-    back.textContent = item.de;
+    if (state.randomMode){
+      if (!state.words.length) return;
+      var rndIdx = Math.floor(Math.random() * state.words.length);
+      state.currentItem = state.words[rndIdx];
+    } else {
+      if (!state.queue.length || state.idx >= state.queue.length){ return; }
+      state.currentItem = state.queue[state.idx];
+    }
+    var item = state.currentItem;
+    if (state.direction === 'jp2de'){
+      front.textContent = item.jp;
+      back.textContent = item.de;
+    } else {
+      front.textContent = item.de;
+      back.textContent = item.jp;
+    }
     state.flipped = false;
     card.classList.remove('flipped');
     setHidden($('gradeBtns'), true);
     setHidden($('flipBtn'), false);
+    updateLabels();
     updateProgress();
   }
 
@@ -103,6 +137,15 @@
   }
 
   function grade(g){
+    if (state.randomMode){
+      if (!state.currentItem) return;
+      var itemR = state.currentItem;
+      var entryR = state.srs[itemR.jp] || {};
+      state.srs[itemR.jp] = schedule(entryR, g);
+      saveSRS(state.srs);
+      renderCard();
+      return;
+    }
     if (state.idx >= state.queue.length) return;
     var item = state.queue[state.idx];
     var entry = state.srs[item.jp] || {};
@@ -123,6 +166,9 @@
   function init(){
     state.words = loadWords();
     state.srs = loadSRS();
+    var prefs = loadPrefs();
+    state.direction = prefs.direction === 'de2jp' ? 'de2jp' : 'jp2de';
+    state.randomMode = !!prefs.random;
     var trainer = $('trainer');
     var empty = $('empty');
     if (!state.words.length){
@@ -130,10 +176,12 @@
       setHidden(trainer, true);
       return;
     }
-    // Build study queue: due items first, then the rest, cap to 50 for session
-    var due = getDueList(state.words, state.srs);
-    var rest = state.words.filter(function(w){ return due.indexOf(w) === -1; });
-    state.queue = due.concat(rest).slice(0, 50);
+    // Build study queue if not in random mode: due items first, then the rest, cap to 50 for session
+    if (!state.randomMode){
+      var due = getDueList(state.words, state.srs);
+      var rest = state.words.filter(function(w){ return due.indexOf(w) === -1; });
+      state.queue = due.concat(rest).slice(0, 50);
+    }
     setHidden(trainer, false);
     setHidden(empty, true);
     renderCard();
@@ -143,6 +191,35 @@
     if (flipBtn) flipBtn.addEventListener('click', flip);
     var gradeBtns = document.querySelectorAll('[data-grade]');
     gradeBtns.forEach(function(b){ b.addEventListener('click', function(){ grade(parseInt(b.getAttribute('data-grade'), 10)); }); });
+
+    // Wire controls
+    var dirSel = $('direction');
+    if (dirSel){
+      dirSel.value = state.direction;
+      dirSel.addEventListener('change', function(){
+        state.direction = dirSel.value === 'de2jp' ? 'de2jp' : 'jp2de';
+        savePrefs({ direction: state.direction, random: state.randomMode });
+        updateLabels();
+        // Re-render current card with new direction
+        if (state.currentItem || (!state.randomMode && state.queue.length)) renderCard();
+      });
+    }
+    var rndChk = $('randomMode');
+    if (rndChk){
+      rndChk.checked = state.randomMode;
+      rndChk.addEventListener('change', function(){
+        state.randomMode = !!rndChk.checked;
+        savePrefs({ direction: state.direction, random: state.randomMode });
+        // Reset indices and (re)build queue if needed
+        state.idx = 0;
+        if (!state.randomMode){
+          var due2 = getDueList(state.words, state.srs);
+          var rest2 = state.words.filter(function(w){ return due2.indexOf(w) === -1; });
+          state.queue = due2.concat(rest2).slice(0, 50);
+        }
+        renderCard();
+      });
+    }
 
     // Keyboard shortcuts
     document.addEventListener('keydown', function(ev){
