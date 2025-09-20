@@ -67,17 +67,29 @@
                 </div>
             </div>
 
+            <div class="mb-4 flex flex-wrap items-center justify-center gap-3 text-sm">
+                <label for="direction" class="sr-only">Richtung</label>
+                <select id="direction" class="px-3 py-2 rounded-lg ring-1 ring-gray-300 dark:ring-gray-600 bg-white dark:bg-gray-800">
+                    <option value="jp2de">Japanisch → Deutsch</option>
+                    <option value="de2jp">Deutsch → Japanisch</option>
+                </select>
+                <label class="inline-flex items-center gap-2">
+                    <input id="randomMode" type="checkbox" class="rounded">
+                    <span>Unendlicher Zufall</span>
+                </label>
+            </div>
+
             <div id="card" class="card bg-white dark:bg-gray-800 rounded-xl shadow p-6 md:p-8 select-none">
                 <div class="card-inner">
                     <div class="card-face">
                         <div class="text-center">
-                            <div class="text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">Japanisch</div>
+                            <div id="frontLabel" class="text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">Japanisch</div>
                             <div id="frontJP" class="text-2xl md:text-3xl font-semibold">—</div>
                         </div>
                     </div>
                     <div class="card-back absolute inset-0 p-6 md:p-8">
                         <div class="text-center">
-                            <div class="text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">Deutsch</div>
+                            <div id="backLabel" class="text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">Deutsch</div>
                             <div id="backDE" class="text-xl md:text-2xl font-medium">—</div>
                         </div>
                     </div>
