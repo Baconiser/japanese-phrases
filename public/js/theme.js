@@ -26,13 +26,18 @@
   }
 
   function updateSwitchEl(el, checked){
+    var lang = (document.documentElement.getAttribute('lang') || '').toLowerCase();
+    var labelOn = lang === 'de' ? '🌙 Dunkel' : '🌙 Dark';
+    var labelOff = lang === 'de' ? '☀️ Hell' : '☀️ Light';
     if (el.tagName === 'INPUT' && el.type === 'checkbox') {
       el.checked = checked;
       el.setAttribute('aria-checked', checked ? 'true' : 'false');
+      el.setAttribute('title', checked ? labelOn : labelOff);
     } else {
       el.setAttribute('aria-pressed', checked ? 'true' : 'false');
       el.setAttribute('data-checked', checked ? '1' : '0');
-      el.textContent = checked ? '🌙 Dark' : '☀️ Light';
+      el.textContent = checked ? labelOn : labelOff;
+      el.setAttribute('title', checked ? labelOff : labelOn);
     }
   }
 
